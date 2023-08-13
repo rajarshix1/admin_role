@@ -1,10 +1,19 @@
-const { newAdmin, login, createUser, editUser, deleteUser, check } = require("../controllers/adminController")
+const { newAdmin, login, createUser, editUser, deleteUser, check, showAllUser } = require("../controllers/adminController")
+const { checkUser, loginUser } = require("../controllers/userController")
 
 const routes = (app) => {
     
     
+    app.route('/user/check')
+    .get(checkUser)
+    app.route('/user/login')
+    .post(loginUser)
+
     app.route('/admin/check')
     .get(check)
+
+    app.route('/admin/all_users')
+    .get(showAllUser)
     app.route('/admin/super')
     .post(newAdmin)
 

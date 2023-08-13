@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const routes = require('./routes/routes');
 const adminMiddleware = require('./middleware/adminMiddleware');
+const userMiddleware = require('./middleware/userMiddleware');
 require('dotenv').config()
 
 const app = express()
@@ -23,6 +24,7 @@ db.once('open', () => {
   console.log('Connected to DB')
 })
 app.use('/admin/check', adminMiddleware);
+app.use('/user/check', userMiddleware);
 
 routes(app)
 

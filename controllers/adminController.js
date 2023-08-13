@@ -102,6 +102,26 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const showAllUser = async (req, res) => {
+    console.log(req.query);
+    try {
+        
+        // Delete the user based on the provided email
+        const users = await User.find({});
+        console.log('here', users);
+
+        if (!users) {
+            console.log('here');
+            return res.status(404).json({ message: 'No user found' });
+        }
+
+        res.status(200).json(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+};
+
 
 //////LOGIN FOR ADMINS////////
 const login = async (req, res) => {
@@ -137,4 +157,4 @@ const login = async (req, res) => {
         console.log(error);
     }
 };
-    module.exports={check,newAdmin, createUser, login, editUser, deleteUser}
+    module.exports={check,newAdmin, createUser, login, editUser, deleteUser, showAllUser}
